@@ -741,6 +741,40 @@ q9_s<- data.frame(
 q9_s <- q9_s %>%
   mutate(Year = factor(Year))
 
+##########Winsorize code############
+#### Winsorizing data to diminish the effect of outliers in the data set- Using the winsorization function
+
+
+# Winsorize with custom thresholds (10th and 90th percentile)
+
+```
+install.packages(DescTools)
+Library (DescTools)
+
+winsorize <- function(x, lower = quantile(x, 0.1), upper = quantile(x, 0.90)) {
+  x[x < lower] <- lower
+  x[x > upper] <- upper
+  return(x)
+}
+
+
+q9_s$Pop_less25<- winsorize(q9_s$Pop_less25)
+q9_s$Pop_over64<- winsorize(q9_s$Pop_over64)
+q9_s$Pop_Hispanic<- winsorize(q9_s$Pop_Hispanic)
+q9_s$White<- winsorize(q9_s$White)
+q9_s$Black<- winsorize(q9_s$Black)
+q9_s$Asian<- winsorize(q9_s$Asian)
+q9_s$Native<- winsorize(q9_s$Native)
+q9_s$Indigenous<- winsorize(q9_s$Indigenous)
+q9_s$TotalMale<- winsorize(q9_s$TotalMale)
+q9_s$TotalFemale<- winsorize(q9_s$TotalFemale)
+q9_s$Share.of.people.of.color<- winsorize(q9_s$Share.of.people.of.color)
+q9_s$Average.household.income..All<- winsorize(q9_s$Average.household.income..All)
+q9_s$Average.household.income..Comm.of.color<- winsorize(q9_s$Average.household.income..Comm.of.color)
+q9_S$Average.household.income..White.comm<- winsorize(q9_s$Average.household.income..White.comm)
+
+```
+
 
 
 
